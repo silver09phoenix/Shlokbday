@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A note for u</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+width:100%;
+height:100vh;
+overflow:hidden;
+background:#a70000;
+font-family:'Patrick Hand', cursive;
+}
+
+/* ========================= */
+/* MAIN SCENE */
+/* ========================= */
+
+.scene{
+position:relative;
+width:100%;
+height:100vh;
+overflow:hidden;
+}
+
+/* ========================= */
+/* TOP DIALOGUES */
+/* ========================= */
+
+.dialogues{
+position:absolute;
+top:3%;
+left:500%;
+transform:translateX(-50%);
+
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:8px;
+
+z-index:20;
+
+animation:floatTop 4s ease-in-out infinite;
+}
+
+.dialogues img:nth-child(1){
+width:0px;
+}
+
+.dialogues img:nth-child(2){
+width:90px;
+}
+
+/* ========================= */
+/* STAMP */
+/* ========================= */
+
+.stamp{
+position:absolute;
+top:10%;
+right:25%;
+width:100px;
+
+z-index:10;
+
+animation:floatStamp 5s ease-in-out infinite;
+}
+
+/* ========================= */
+/* COLLAGE */
+/* ========================= */
+
+.collage{
+position:absolute;
+left:16%;
+top:10%;
+
+width:250px;
+
+background:white;
+
+padding:12px 12px 0 12px;
+
+border-radius:4px;
+
+transform:rotate(-4deg);
+
+z-index:5;
+
+box-shadow:
+0 10px 25px rgba(0,0,0,.22);
+
+animation:
+collageEntry 1.3s ease forwards,
+collageFloat 5s ease-in-out infinite 1.3s;
+}
+
+/* PHOTO */
+
+.photo{
+width:100%;
+margin-bottom:10px;
+overflow:hidden;
+background:#ddd;
+}
+
+.photo img{
+width:100%;
+height:160px;
+object-fit:cover;
+display:block;
+}
+
+/* LOVE LABEL */
+
+.love-label{
+width:100%;
+background:#1e63c6;
+color:white;
+
+text-align:center;
+
+font-size:2rem;
+font-weight:bold;
+
+padding:4px 0 8px 0;
+
+letter-spacing:2px;
+}
+
+/* ========================= */
+/* ENVELOPE SECTION */
+/* ========================= */
+
+.envelope-section{
+position:absolute;
+
+left:56%;
+top:80%;
+
+transform:translate(-50%,-50%);
+
+width:min(800px,80vw);
+height:520px;
+
+z-index:8;
+}
+
+/* ========================= */
+/* LETTER PNG */
+/* ========================= */
+
+.letter{
+position:absolute;
+
+left:50%;
+bottom:-950px;
+
+transform:
+translateX(-50%)
+rotate(-2deg);
+
+width:62%;
+
+z-index:2;
+
+animation:
+letterReveal 1.6s cubic-bezier(.19,1,.22,1);
+}
+
+/* ========================= */
+/* ENVELOPE */
+/* ========================= */
+
+.envelope{
+position:absolute;
+
+bottom:20%;
+left:50%;
+
+transform:translateX(-50%);
+
+width:100%;
+
+z-index:5;
+
+animation:
+envelopePop 1.3s ease;
+}
+
+/* ========================= */
+/* HEART */
+/* ========================= */
+
+.heart{
+position:absolute;
+
+width:100px;
+
+left:50%;
+bottom:290px;
+
+transform:translateX(-50%);
+
+z-index:7;
+
+animation:
+heartBeat 2s infinite;
+}
+
+/* ========================= */
+/* BACK BUTTON */
+/* ========================= */
+
+.back-btn{
+position:absolute;
+
+right:5%;
+bottom:7%;
+
+background:black;
+color:white;
+
+border:none;
+
+padding:14px 34px;
+
+border-radius:999px;
+
+font-size:1.5rem;
+font-weight:bold;
+
+cursor:pointer;
+
+z-index:20;
+
+transition:.3s;
+}
+
+.back-btn:hover{
+transform:scale(1.06);
+}
+
+/* ========================= */
+/* CORNER HEART */
+/* ========================= */
+
+.corner-heart{
+position:absolute;
+
+right:1.5%;
+bottom:-100%;
+
+width:54px;
+
+z-index:20;
+
+animation:
+heartPulse 2s infinite;
+}
+
+/* ========================= */
+/* ANIMATIONS */
+/* ========================= */
+
+@keyframes letterReveal{
+
+0%{
+opacity:0;
+
+transform:
+translateX(-50%)
+translateY(90px)
+rotate(-2deg);
+}
+
+100%{
+opacity:1;
+
+transform:
+translateX(-50%)
+translateY(0px)
+rotate(-2deg);
+}
+}
+
+@keyframes envelopePop{
+
+0%{
+opacity:0;
+
+transform:
+translateX(-50%)
+scale(.75);
+}
+
+100%{
+opacity:1;
+
+transform:
+translateX(-50%)
+scale(1);
+}
+}
+
+@keyframes collageEntry{
+
+0%{
+opacity:0;
+
+transform:
+translateX(-120px)
+rotate(-10deg);
+}
+
+100%{
+opacity:1;
+
+transform:
+translateX(0)
+rotate(-4deg);
+}
+}
+
+@keyframes collageFloat{
+
+0%,100%{
+transform:
+rotate(-4deg)
+translateY(0px);
+}
+
+50%{
+transform:
+rotate(-4deg)
+translateY(-10px);
+}
+}
+
+@keyframes floatTop{
+
+0%,100%{
+transform:
+translateX(-50%)
+translateY(0);
+}
+
+50%{
+transform:
+translateX(-50%)
+translateY(-8px);
+}
+}
+
+@keyframes floatStamp{
+
+0%,100%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-10px);
+}
+}
+
+@keyframes heartBeat{
+
+0%,100%{
+transform:
+translateX(-50%)
+scale(1);
+}
+
+50%{
+transform:
+translateX(-50%)
+scale(1.1);
+}
+}
+
+@keyframes heartPulse{
+
+0%,100%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.08);
+}
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media(max-width:900px){
+
+.collage{
+left:6%;
+top:20%;
+width:150px;
+}
+
+.photo img{
+height:110px;
+}
+
+.envelope-section{
+left:58%;
+}
+}
+
+@media(max-width:600px){
+
+.collage{
+width:115px;
+left:2%;
+top:28%;
+padding:8px 8px 0 8px;
+}
+
+.photo{
+margin-bottom:6px;
+}
+
+.photo img{
+height:78px;
+}
+
+.love-label{
+font-size:1rem;
+padding:3px 0 5px 0;
+}
+
+.envelope-section{
+width:84vw;
+height:450px;
+top:58%;
+left:57%;
+}
+
+.letter{
+width:66%;
+bottom:85px;
+}
+
+.heart{
+width:58px;
+bottom:58px;
+}
+
+.dialogues img:nth-child(1){
+width:90px;
+}
+
+.dialogues img:nth-child(2){
+width:70px;
+}
+
+.stamp{
+width:46px;
+right:6%;
+}
+
+.back-btn{
+padding:10px 24px;
+font-size:1rem;
+}
+
+.corner-heart{
+width:42px;
+}
+}
+
+@media(max-width:420px){
+
+.collage{
+width:100px;
+top:30%;
+}
+
+.photo img{
+height:68px;
+}
+
+.letter{
+bottom:75px;
+}
+
+.heart{
+width:50px;
+bottom:52px;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+
+<!-- ========================= -->
+<!-- DIALOGUES -->
+<!-- ========================= -->
+
+<div class="dialogues">
+
+<!-- REPLACE LATER -->
+<img src="love-you.png">
+
+<!-- REPLACE LATER -->
+<img src="hearts-dialogue.png">
+
+</div>
+
+<!-- ========================= -->
+<!-- STAMP -->
+<!-- ========================= -->
+
+<img src="stamp.png" class="stamp">
+
+<!-- ========================= -->
+<!-- COLLAGE -->
+<!-- ========================= -->
+
+<div class="collage">
+
+<div class="photo">
+<img src="7.jpg">
+</div>
+
+<div class="photo">
+<img src="6.jpg">
+</div>
+
+<div class="photo">
+<img src="1.jpg">
+</div>
+
+<div class="love-label">
+LOVE!!
+</div>
+
+</div>
+
+<!-- ========================= -->
+<!-- ENVELOPE SECTION -->
+<!-- ========================= -->
+
+<div class="envelope-section">
+
+<!-- LETTER PNG -->
+<img src=".png" class="letter">
+
+<!-- ENVELOPE PNG -->
+<img src="envelope.png" class="envelope">
+
+<!-- HEART PNG -->
+<img src="heart.png" class="heart">
+
+</div>
+
+<!-- ========================= -->
+<!-- BACK BUTTON -->
+<!-- ========================= -->
+
+<button class="back-btn">
+BACK
+</button>
+
+<!-- ========================= -->
+<!-- CORNER HEART -->
+<!-- ========================= -->
+
+<img src="outline-heart.png" class="corner-heart">
+
+</div>
+
+<script>
+
+/* HEART HOVER EFFECT */
+
+const heart =
+document.querySelector('.heart');
+
+heart.addEventListener('mouseenter',()=>{
+
+heart.style.transform =
+'translateX(-50%) scale(1.18)';
+
+});
+
+heart.addEventListener('mouseleave',()=>{
+
+heart.style.transform =
+'translateX(-50%) scale(1)';
+
+});
+
+/* BACK BUTTON */
+
+document.querySelector('.back-btn')
+.addEventListener('click',()=>{
+
+document.querySelector('.scene')
+.style.opacity='0';
+
+document.querySelector('.scene')
+.style.transition='0.5s';
+
+setTimeout(()=>{
+window.location.href =
+"Index.html"
+},500);
+
+});
+
+</script>
+
+</body>
+</html>

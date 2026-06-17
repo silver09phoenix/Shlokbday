@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Birthday wish</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      width:100%;
+      height:100vh;
+      background:#ffffff;
+      overflow:hidden;
+      position:relative;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    /* GIF Container */
+    .gif-container{
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%, -53%);
+      width:min(78vw, 430px);
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .gif-container img{
+      width:100%;
+      height:auto;
+      object-fit:contain;
+      user-select:none;
+      pointer-events:none;
+    }
+
+    /* NEXT Button */
+    .next-btn{
+      position:absolute;
+      right:35px;
+      bottom:38px;
+
+      width:170px;
+      height:58px;
+
+      border:none;
+      border-radius:40px;
+      background:#000;
+
+      color:#fff;
+      font-size:24px;
+      font-weight:700;
+      letter-spacing:1px;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      cursor:pointer;
+      transition:0.25s ease;
+
+      box-shadow:0 6px 18px rgba(0,0,0,0.18);
+    }
+
+    .next-btn:hover{
+      transform:scale(1.05);
+    }
+
+    
+
+    /* Responsive */
+    @media (max-width:768px){
+
+      .gif-container{
+        width:88vw;
+      }
+
+      .next-btn{
+        width:145px;
+        height:52px;
+        font-size:20px;
+
+        right:18px;
+        bottom:24px;
+      }
+
+   
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- YOUR GIF -->
+  <div class="gif-container">
+    <img src="3.gif" alt="Birthday GIF">
+  </div>
+
+  <!-- NEXT BUTTON -->
+  <button class="next-btn" onclick="nextPage()">
+    NEXT
+    
+  </button>
+
+  <script>
+    function nextPage(){
+      window.location.href = "Giftboxpage.html";
+    }
+  </script>
+
+</body>
+</html>

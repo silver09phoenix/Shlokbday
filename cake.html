@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Cake</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap');
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #8B0000; /* Deep red theme from IMG_1175.jpeg */
+            font-family: 'Fredoka', sans-serif;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; 
+            align-items: center;
+            position: relative;
+        }
+
+        #typewriter-text {
+            color: white; 
+            font-size: 3rem;
+            font-weight: 600;
+            text-align: center;
+            position: absolute;
+            top: 10%;
+            width: 90%;
+            min-height: 4rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .cake-area {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        #cake-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: -5px; /* Aligns to bottom of screen */
+        }
+
+        /* Blow Button */
+        #blow-btn {
+            position: absolute;
+            bottom: 15%;
+            background-color: #660000;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 15px 50px;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 2px;
+            z-index: 100;
+            opacity: 0;
+            transform: translateY(100px) scale(0.5);
+            transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        #blow-btn.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Back Button - Bottom Right */
+        #back-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #000000; /* Black color */
+            color: #ffffff; /* White text */
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 12px; /* Rounded edges */
+            cursor: pointer;
+            font-weight: 600;
+            z-index: 200;
+            opacity: 0; 
+            visibility: hidden;
+            transition: opacity 1.5s ease;
+        }
+
+        #back-btn.appear {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 600px) {
+            #typewriter-text { font-size: 2rem; top: 15%; }
+            #blow-btn { padding: 10px 40px; font-size: 1.2rem; }
+            .cake-area { width: 120%; }
+            #back-btn { bottom: 20px; right: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div id="typewriter-text"></div>
+        
+        <div class="cake-area">
+            <img src="cake.png" id="cake-img" alt="Cake">
+            <button id="blow-btn" onclick="blowCandles()">Blow</button>
+        </div>
+    </div>
+
+    <!-- Replace 'https://www.google.com' with your actual destination URL -->
+    <button id="back-btn" onclick="window.location.href='Giftboxpage.html'">Back</button>
+
+    <script>
+        const textElement = document.getElementById('typewriter-text');
+        const blowBtn = document.getElementById('blow-btn');
+        const backBtn = document.getElementById('back-btn');
+        const cakeImg = document.getElementById('cake-img');
+
+        const phrase1 = "Make a wish";
+        const phrase2 = "HAPPY BIRTHDAY MY SHYLOKK";
+
+        function typeWriter(text, i, fnCallback) {
+            if (i < text.length) {
+                textElement.innerHTML = text.substring(0, i + 1);
+                setTimeout(function() {
+                    typeWriter(text, i + 1, fnCallback)
+                }, 100);
+            } else if (typeof fnCallback == 'function') {
+                setTimeout(fnCallback, 500);
+            }
+        }
+
+        window.onload = function() {
+            typeWriter(phrase1, 0, function() {
+                blowBtn.classList.add('show');
+            });
+        };
+
+        function blowCandles() {
+            blowBtn.style.display = 'none';
+            cakeImg.src = "cake2.png";
+            textElement.innerHTML = "";
+
+            setTimeout(() => {
+                typeWriter(phrase2, 0, function() {
+                    // Back button fades in after second text finishes
+                    backBtn.classList.add('appear');
+                });
+            }, 300);
+        }
+    </script>
+</body>
+</html>

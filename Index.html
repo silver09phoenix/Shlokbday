@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Password Please!</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Baloo 2', cursive;
+}
+
+body{
+    width:100%;
+    height:100vh;
+    background:#9d0000;
+    overflow:hidden;
+}
+
+/* MAIN */
+
+.main{
+    width:100%;
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+    padding:20px;
+}
+
+/* CONTENT */
+
+.content{
+    width:100%;
+    max-width:1200px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    gap:120px;
+}
+
+/* LEFT */
+
+.left{
+    position:relative;
+
+    width:360px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* PHOTO FRAME */
+
+.frame{
+    width:320px;
+
+    background:white;
+
+    padding:14px 14px 55px;
+
+    position:relative;
+
+    box-shadow:0 8px 25px rgba(0,0,0,0.25);
+}
+
+.frame img{
+    width:100%;
+    height:340px;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+/* TEDDY */
+
+.teddy{
+    position:absolute;
+
+    left:-70px;
+    bottom:-45px;
+
+    z-index:4;
+}
+
+.teddy img{
+    width:120px;
+    height:auto;
+    display:block;
+}
+
+/* RIGHT */
+
+.right{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+/* TITLE */
+
+.title{
+    color:white;
+
+    font-size:38px;
+    font-weight:700;
+
+    margin-bottom:12px;
+}
+
+/* PASSWORD BOXES */
+
+.password-boxes{
+    display:flex;
+
+    gap:12px;
+
+    margin-bottom:28px;
+}
+
+.pass-box{
+    width:60px;
+    height:60px;
+
+    background:white;
+
+    border-radius:14px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:38px;
+    font-weight:700;
+
+    color:#9d0000;
+}
+
+/* KEYPAD */
+
+.keypad{
+    display:grid;
+
+    grid-template-columns:repeat(3,85px);
+
+    gap:18px;
+}
+
+.key{
+    width:85px;
+    height:85px;
+
+    border-radius:50%;
+    border:none;
+
+    background:white;
+
+    font-size:42px;
+    font-weight:700;
+
+    color:#9d0000;
+
+    cursor:pointer;
+
+    transition:0.15s;
+}
+
+.key:active{
+    transform:scale(0.92);
+}
+
+/* NEXT BUTTON */
+
+.next-btn{
+    margin-top:28px;
+
+    padding:13px 40px;
+
+    border:none;
+    border-radius:50px;
+
+    background:black;
+    color:white;
+
+    font-size:22px;
+    font-weight:600;
+
+    display:none;
+
+    cursor:pointer;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .content{
+        gap:35px;
+
+        transform:scale(0.82);
+
+        justify-content:center;
+        align-items:center;
+    }
+
+    .left{
+        width:220px;
+
+        flex-shrink:0;
+    }
+
+    .right{
+        flex-shrink:0;
+    }
+
+    .frame{
+        width:200px;
+
+        padding:10px 10px 42px;
+    }
+
+    .frame img{
+        height:220px;
+    }
+
+    .teddy{
+        left:-35px;
+        bottom:-24px;
+    }
+
+    .teddy img{
+        width:75px;
+    }
+
+    .title{
+        font-size:22px;
+    }
+
+    .password-boxes{
+        gap:8px;
+
+        margin-bottom:18px;
+    }
+
+    .pass-box{
+        width:40px;
+        height:40px;
+
+        font-size:22px;
+    }
+
+    .keypad{
+        grid-template-columns:repeat(3,55px);
+
+        gap:10px;
+    }
+
+    .key{
+        width:55px;
+        height:55px;
+
+        font-size:26px;
+    }
+
+}
+
+/* EXTRA SMALL MOBILE */
+
+@media(max-width:480px){
+
+    .content{
+        transform:scale(0.70);
+
+        gap:15px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="main">
+
+    <div class="content">
+
+        <!-- LEFT SIDE -->
+
+        <div class="left">
+
+            <div class="frame">
+
+                <!-- CHANGE PHOTO HERE -->
+                <img src="1.jpg" alt="photo">
+
+            </div>
+
+            <!-- CHANGE TEDDY GIF/PNG HERE -->
+            <div class="teddy">
+                <img src="2.png" alt="teddy">
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+
+        <div class="right">
+
+            <div class="title">Entre a passcode</div>
+
+            <div class="password-boxes">
+
+                <div class="pass-box" id="b1"></div>
+                <div class="pass-box" id="b2"></div>
+                <div class="pass-box" id="b3"></div>
+                <div class="pass-box" id="b4"></div>
+
+            </div>
+
+            <div class="keypad">
+
+                <button class="key" onclick="press(1)">1</button>
+                <button class="key" onclick="press(2)">2</button>
+                <button class="key" onclick="press(3)">3</button>
+
+                <button class="key" onclick="press(4)">4</button>
+                <button class="key" onclick="press(5)">5</button>
+                <button class="key" onclick="press(6)">6</button>
+
+                <button class="key" onclick="press(7)">7</button>
+                <button class="key" onclick="press(8)">8</button>
+                <button class="key" onclick="press(9)">9</button>
+
+                <button class="key" onclick="clearPass()">*</button>
+                <button class="key" onclick="press(0)">0</button>
+                <button class="key" onclick="backspace()">#</button>
+
+            </div>
+
+            <button class="next-btn" id="nextBtn" onclick="nextPage()">
+                Next
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* CHANGE PASSWORD HERE */
+const correctPassword = "2707";
+
+/* CHANGE REDIRECT WEBSITE HERE */
+const redirectURL = "2Page.html";
+
+let entered = "";
+
+/* NUMBER PRESS */
+
+function press(num){
+
+    if(entered.length < 4){
+
+        entered += num;
+
+        updateBoxes();
+
+        if(entered.length === 4){
+
+            if(entered === correctPassword){
+
+                document.getElementById("nextBtn").style.display = "block";
+
+            }else{
+
+                setTimeout(()=>{
+
+                    entered = "";
+
+                    updateBoxes();
+
+                },400);
+
+            }
+
+        }
+
+    }
+
+}
+
+/* UPDATE BOXES */
+
+function updateBoxes(){
+
+    for(let i=1;i<=4;i++){
+
+        document.getElementById("b"+i).innerHTML = entered[i-1] || "";
+
+    }
+
+}
+
+/* CLEAR */
+
+function clearPass(){
+
+    entered = "";
+
+    updateBoxes();
+
+    document.getElementById("nextBtn").style.display = "none";
+
+}
+
+/* BACKSPACE */
+
+function backspace(){
+
+    entered = entered.slice(0,-1);
+
+    updateBoxes();
+
+}
+
+/* NEXT PAGE */
+
+function nextPage(){
+
+    window.location.href = redirectURL;
+
+}
+
+</script>
+
+</body>
+</html>
